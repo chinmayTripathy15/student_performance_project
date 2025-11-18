@@ -1,4 +1,4 @@
-# student_performance_predication
+ student_performance_predication
 # ML Prediction App (Streamlit) 🌐🤖
 
 A beginner-friendly end-to-end Machine Learning project built using **Python**, **pandas**, **scikit-learn**, and **Streamlit**.  
