@@ -1,20 +1,20 @@
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression
 import pickle
 
-# Load the dataset
-df = pd.read_csv('data.csv')
+# Load dataset
+df = pd.read_csv("data.csv")
 
-# Features and labels
-X = df[['study_hours', 'sleep_hours', 'attendance']]
-y = df['pass']
+# Features & labels
+X = df[['hours_studied', 'sleep_hours', 'attendance_percent', 'previous_scores']]
+y = df['exam_score']
 
-# Train model
-model = LogisticRegression()
+# Train regression model
+model = LinearRegression()
 model.fit(X, y)
 
-# Save model to file
-with open('model.pkl', 'wb') as file:
+# Save model
+with open("model.pkl", "wb") as file:
     pickle.dump(model, file)
 
 print("Model trained and saved as model.pkl")
