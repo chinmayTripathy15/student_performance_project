@@ -1,6 +1,6 @@
 import streamlit as st
 import pickle
-import numpy as np
+import pandas as pd
 
 # Load trained ML model
 with open("model.pkl", "rb") as file:
@@ -16,16 +16,21 @@ previous = st.slider("📘 Previous Score (%)", 0, 100, 50)
 
 if st.button("Predict Result"):
 
-    # Prepare input
-    input_data = np.array([[hours, sleep, attendance, previous]])
+    # Prepare input as DataFrame with correct column names
+    input_df = pd.DataFrame([{
+        "hours_studied": hours,
+        "sleep_hours": sleep,
+        "attendance_percent": attendance,
+        "previous_scores": previous
+    }])
 
     # Predict score
-    predicted_score = model.predict(input_data)[0]
+    predicted_score = model.predict(input_df)[0]
 
     # Display predicted score
     st.info(f"📊 Predicted Exam Score: {predicted_score:.2f}")
 
-    # PASS / FAIL based on the score
+    # PASS / FAIL based on score
     if predicted_score >= 40:
         st.success("✅ Result: PASS")
     else:
