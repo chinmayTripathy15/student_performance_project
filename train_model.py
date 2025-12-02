@@ -5,13 +5,13 @@ import pickle
 # Step 1: Load dataset
 df = pd.read_csv("data.csv")
 
-# Step 2: Define feature columns (independent variables)
+# Step 2: Select required feature columns
 feature_cols = ["hours_studied", "sleep_hours", "attendance_percent", "previous_scores"]
 
-X = df[feature_cols]          # Features
-y = df["exam_score"]          # Target label
+X = df[feature_cols]          # Features (input)
+y = df["exam_score"]          # Target (output)
 
-# Step 3: Train the regression model
+# Step 3: Train the model
 model = LinearRegression()
 model.fit(X, y)
 
