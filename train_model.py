@@ -2,19 +2,21 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 import pickle
 
-# Load dataset
+# Step 1: Load dataset
 df = pd.read_csv("data.csv")
 
-# Features & labels
-X = df[['hours_studied', 'sleep_hours', 'attendance_percent', 'previous_scores']]
-y = df['exam_score']
+# Step 2: Define feature columns (independent variables)
+feature_cols = ["hours_studied", "sleep_hours", "attendance_percent", "previous_scores"]
 
-# Train regression model
+X = df[feature_cols]          # Features
+y = df["exam_score"]          # Target label
+
+# Step 3: Train the regression model
 model = LinearRegression()
 model.fit(X, y)
 
-# Save model
+# Step 4: Save the trained model
 with open("model.pkl", "wb") as file:
     pickle.dump(model, file)
 
-print("Model trained and saved as model.pkl")
+print("Model successfully trained and saved as model.pkl")
